@@ -26,22 +26,17 @@ export async function generateImages(
 
   const images: GeneratedImage[] = [];
 
-  if (model === "flash") {
-    for (let i = 0; i < count; i++) {
-      const image = await generateWithFlash(genai, modelId, options);
-      if (image) {
-        images.push(image);
-      }
+  for (let i = 0; i < count; i++) {
+    const image = await generateWithGemini(genai, modelId, options);
+    if (image) {
+      images.push(image);
     }
-  } else {
-    const result = await generateWithImagen(genai, modelId, options, count);
-    images.push(...result);
   }
 
   return images;
 }
 
-async function generateWithFlash(
+async function generateWithGemini(
   genai: GoogleGenAI,
   modelId: string,
   options: GenerateImageOptions
@@ -75,41 +70,4 @@ async function generateWithFlash(
   }
 
   return null;
-}
-
-async function generateWithImagen(
-  genai: GoogleGenAI,
-  modelId: string,
-  options: GenerateImageOptions,
-  count: number
-): Promise<GeneratedImage[]> {
-  const config: Record<string, unknown> = {
-    numberOfImages: count,
-  };
-  if (options.aspectRatio) {
-    config.aspectRatio = options.aspectRatio;
-  }
-  if (options.negativePrompt) {
-    config.negativePrompt = options.negativePrompt;
-  }
-
-  const response = await genai.models.generateImages({
-    model: modelId,
-    prompt: options.prompt,
-    config,
-  });
-
-  const images: GeneratedImage[] = [];
-  if (response.generatedImages) {
-    for (const img of response.generatedImages) {
-      if (img.image?.imageBytes) {
-        images.push({
-          base64Data: img.image.imageBytes,
-          mimeType: "image/png",
-        });
-      }
-    }
-  }
-
-  return images;
 }
