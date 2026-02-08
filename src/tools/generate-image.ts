@@ -14,7 +14,7 @@ const GenerateImageSchema = {
     .enum(["flash", "pro"])
     .optional()
     .default("flash")
-    .describe("Model to use: 'flash' (fast, gemini-2.0-flash-exp) or 'pro' (high quality, imagen-3.0)"),
+    .describe("Model to use: 'flash' (fast, gemini-2.5-flash-image) or 'pro' (high quality, gemini-3-pro-image-preview)"),
   aspect_ratio: z
     .enum(ASPECT_RATIOS)
     .optional()
@@ -41,7 +41,7 @@ const GenerateImageSchema = {
 export function registerGenerateImageTool(server: McpServer): void {
   server.tool(
     "generate_image",
-    "Generate images using Google Gemini models. Supports 'flash' (fast, gemini-2.0-flash-exp) and 'pro' (high quality, imagen-3.0) models.",
+    "Generate images using Google Gemini models. Supports 'flash' (fast, gemini-2.5-flash-image) and 'pro' (high quality, gemini-3-pro-image-preview) models.",
     GenerateImageSchema,
     async (params) => {
       try {
