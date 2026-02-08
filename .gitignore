@@ -3,3 +3,4 @@ dist/
 *.tsbuildinfo
 .env
 nanobanana-images/
+.DS_Store
