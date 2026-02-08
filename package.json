@@ -1,0 +1,29 @@
+{
+  "name": "@saroby/nanobanana-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Google Gemini image generation (Nano Banana)",
+  "license": "MIT",
+  "author": "saroby",
+  "type": "module",
+  "bin": {
+    "nanobanana-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && shx chmod +x dist/index.js",
+    "prepare": "npm run build",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@google/genai": "^1.0.0",
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "shx": "^0.3.4",
+    "typescript": "^5.8.2"
+  }
+}

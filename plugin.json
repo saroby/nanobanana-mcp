@@ -1,0 +1,17 @@
+{
+  "name": "nanobanana-mcp",
+  "description": "Google Gemini image generation MCP server (Nano Banana)",
+  "version": "1.0.0",
+  "author": {
+    "name": "saroby"
+  },
+  "mcpServers": {
+    "nanobanana": {
+      "command": "npx",
+      "args": ["-y", "@saroby/nanobanana-mcp"],
+      "env": {
+        "GEMINI_API_KEY": ""
+      }
+    }
+  }
+}

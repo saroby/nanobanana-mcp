@@ -1,0 +1,29 @@
+{
+  "name": "nanobanana-marketplace",
+  "owner": {
+    "name": "saroby"
+  },
+  "metadata": {
+    "description": "Google Gemini Nano Banana image generation MCP server"
+  },
+  "plugins": [
+    {
+      "name": "nanobanana-mcp",
+      "description": "Google Gemini image generation (Nano Banana) MCP server",
+      "version": "1.0.0",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/saroby/nanobanana-mcp.git"
+      },
+      "mcpServers": {
+        "nanobanana": {
+          "command": "npx",
+          "args": ["-y", "@saroby/nanobanana-mcp"],
+          "env": {
+            "GEMINI_API_KEY": ""
+          }
+        }
+      }
+    }
+  ]
+}
