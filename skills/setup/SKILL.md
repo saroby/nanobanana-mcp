@@ -1,11 +1,13 @@
 ---
 description: Set up GEMINI_API_KEY for Nanobanana MCP server
-allowed-tools: [Read, Write, Edit, AskUserQuestion]
+allowed-tools: [Read, Edit, Bash, AskUserQuestion]
 ---
 
 # Nanobanana Setup
 
 Configure your GEMINI_API_KEY so the Nanobanana MCP server can generate images using Google Gemini.
+
+The MCP server is already registered via the plugin's `.mcp.json`. This setup only needs to set the `GEMINI_API_KEY` environment variable.
 
 ## Instructions
 
@@ -22,26 +24,24 @@ Configure your GEMINI_API_KEY so the Nanobanana MCP server can generate images u
 
 4. If the user provides a key via "Other", proceed to save it.
 
-5. Read `~/.claude/settings.json` to get the current settings.
+5. Detect the user's shell profile file:
+   - Check if `~/.zshrc` exists (macOS default). If yes, use it.
+   - Otherwise check `~/.bashrc`, then `~/.bash_profile`.
 
-6. Update the file to add or merge the `mcpServers` section with the nanobanana config:
+6. Read the shell profile file and check if `GEMINI_API_KEY` is already exported.
 
-```json
-{
-  "mcpServers": {
-    "nanobanana": {
-      "command": "npx",
-      "args": ["-y", "@saroby/nanobanana-mcp"],
-      "env": {
-        "GEMINI_API_KEY": "<user's key here>"
-      }
-    }
-  }
-}
+7. If already set, ask the user if they want to update it. If not set, append the export line:
+
+```bash
+# Nanobanana MCP - Gemini API Key
+export GEMINI_API_KEY="<user's key here>"
 ```
 
-IMPORTANT: Preserve all existing settings in the file. Only add/update the `mcpServers.nanobanana` entry.
+If already set, replace the existing `export GEMINI_API_KEY=` line with the new value.
 
-7. After saving, tell the user:
-   - "GEMINI_API_KEY has been saved successfully."
-   - "Please restart Claude Code (`/exit` then reopen) for the MCP server to connect."
+IMPORTANT: Do NOT write MCP server config to `~/.claude/settings.json`. The plugin's `.mcp.json` already handles MCP registration. Only the environment variable needs to be set.
+
+8. After saving, tell the user:
+   - "GEMINI_API_KEY has been saved to your shell profile."
+   - "Please restart your terminal and Claude Code (`/exit` then reopen) for the MCP server to connect."
+   - "Or run `source <profile_file>` in your terminal first, then restart Claude Code."
