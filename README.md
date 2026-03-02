@@ -5,8 +5,8 @@ Google Gemini image generation MCP server (Nano Banana).
 ## Features
 
 - **generate_image** - Generate images using Google Gemini models
-  - `flash` mode: gemini-2.0-flash-exp (fast, ~2-3s)
-  - `pro` mode: imagen-3.0-generate-002 (high quality, ~5-8s)
+  - `flash` mode: gemini-2.5-flash-image (fast, ~2-3s)
+  - `pro` mode: gemini-3-pro-image-preview (high quality, ~5-8s)
 - **list_images** - List generated images in a directory
 
 ## Setup
