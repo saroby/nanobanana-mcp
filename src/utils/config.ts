@@ -14,7 +14,7 @@ export function getApiKey(): string {
 export const DEFAULT_OUTPUT_DIR = process.env.IMAGE_OUTPUT_DIR || "./nanobanana-images";
 
 export const MODELS = {
-  flash: "gemini-2.5-flash-image",
+  flash: "gemini-3.1-flash-image-preview",
   pro: "gemini-3-pro-image-preview",
 } as const;
 
